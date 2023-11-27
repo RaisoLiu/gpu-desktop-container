@@ -1,5 +1,5 @@
 #FROM jupyter/base-notebook
-FROM cschranz/gpu-jupyter:cuda11.6-ubuntu20.04
+FROM zzb/gpu-nb:cuda12.1.0
 
 ENV PATH="${CONDA_DIR}/bin:${PATH}" \
     HOME="/home/${NB_USER}"
