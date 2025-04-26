@@ -1,5 +1,8 @@
 #FROM jupyter/base-notebook
-FROM zzb/gpu-nb:cuda12.1.0
+#FROM zzb/gpu-nb:cuda12.1.0
+#FROM gpu-notebook:cuda-12.6.3-cudnn-devel-ubuntu22.04
+#FROM cschranz/gpu-jupyter:v1.9_cuda-12.6_ubuntu-24.04
+FROM cschranz/gpu-jupyter:v1.7_cuda-12.2_ubuntu-22.04
 
 ENV PATH="${CONDA_DIR}/bin:${PATH}" \
     HOME="/home/${NB_USER}"
@@ -40,7 +43,10 @@ RUN fix-permissions /opt/install
 
 RUN chown -R $NB_UID:$NB_GID /opt/conda
 USER $NB_USER
-RUN conda install -y -q websockify=0.10.0
+RUN conda install -y -q websockify
+#RUN conda install -y -q -c conda-forge websockify=0.10.0
+#RUN pip install websockify
+
 RUN cd /opt/install \
  && pip install -e .
 
